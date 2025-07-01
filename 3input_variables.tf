@@ -1,3 +1,5 @@
+#Variables allow you to make your configurations reusable and dynamic.
+
 
 variable "<VARIABLE_NAME>" {
   description = "A brief explanation of what this variable is for."

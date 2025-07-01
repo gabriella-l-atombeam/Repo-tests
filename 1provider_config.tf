@@ -1,3 +1,5 @@
+#This block tells OpenTofu which cloud provider you want to interact with and its specific settings (like region).
+
 # versions.tf (or main.tf)
 terraform {
   required_providers {

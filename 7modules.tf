@@ -1,4 +1,9 @@
+#Modules allow you to encapsulate and reuse OpenTofu configurations. 
+#You define a module in its own directory and then call it from your main configuration.
+
+
 # modules/my-ec2-module/main.tf
+
 variable "instance_name" {
   description = "Name tag for the EC2 instance."
   type        = string
@@ -29,15 +34,28 @@ output "instance_id" {
 }
 
 
+
+
 #Example Module Call (would be main.tf)
+
+#module "<LOCAL_NAME>" defines a module call
+
 # main.tf (in your root directory)
 module "web_server_instance" {
   source = "./modules/my-ec2-module" # Path to your module directory
+  #can be local path, Git repo, or Terraform Registry module
+
+
+
+  #arguments like below, inside the module block correspond to the 
+  #variable declarations withing the module
+  #outputs from a module are acessed via module.<LOCAL_NAME>.<OUTPUT_NAME>
 
   instance_name = "WebServer01"
   instance_type = "t2.medium"
   ami_id        = "ami-053b0d53c2792790b" # Replace with a valid AMI
 }
+
 
 module "database_server_instance" {
   source = "./modules/my-ec2-module"

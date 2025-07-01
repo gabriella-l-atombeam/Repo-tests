@@ -1,3 +1,7 @@
+#Local values are named expressions that you can use to avoid repeating the same value 
+#or complex expression multiple times within a module. They improve readability.
+
+
 locals {
   <LOCAL_VALUE_NAME> = <EXPRESSION>
   another_local_value = "prefix-${local.some_value}-suffix"

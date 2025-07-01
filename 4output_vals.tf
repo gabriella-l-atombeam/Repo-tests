@@ -1,3 +1,7 @@
+#Outputs allow you to extract information about the created infrastructure.
+
+
+
 output "<OUTPUT_NAME>" {
   value       = <EXPRESSION_TO_GET_VALUE>
   description = "A description of what this output represents."

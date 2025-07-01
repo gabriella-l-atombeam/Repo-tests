@@ -1,3 +1,7 @@
+#This is the core of OpenTofu. You define infrastructure objects as resource blocks.
+
+
+
 #a resource is an "infrastructure object" which can represent
 #a server, network, database or storage unit
 
