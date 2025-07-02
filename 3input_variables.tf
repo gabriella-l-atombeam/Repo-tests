@@ -1,13 +1,21 @@
+#Example at bottom
 #Variables allow you to make your configurations reusable and dynamic.
 
-
 variable "<VARIABLE_NAME>" {
+  #purpose is to decalre input variable to use throughout 
+  #allows to have similar infrastructure with different settings
+
+  #<VARIABLE_NAME> = local nmae to var, use it as var.<VARIABLE_NAME>
+  #eg. "aws_region": AWS deployment region, "instance_count": number of servers to deploy,
+  #"admin_password": pw for an administrative user
+
+
   description = "A brief explanation of what this variable is for."
-  type        = <TYPE> # string, number, bool, list(string), map(string), object({...})
-  default     = <DEFAULT_VALUE> # Optional: If not provided, it must be set externally
-  sensitive   = true # Optional: Masks the value in CLI output (but not in state file)
-  validation { # Optional: Custom validation rules
-    condition     = length(var.variable_name) > 0
+  type        = <TYPE>   #string, number, bool, list(string), map(string), object({...})
+  default     = <DEFAULT_VALUE>   #Optional: If not provided, it must be set externally
+  sensitive   = true   #Optional: Masks the value in CLI output (but not in state file) so no sensitive info on screen
+  validation { # Optional: Custom validation rules, below are some examples
+    condition     = length(var.variable_name) > 0 #or eg. condition = contains(["dev", "prod"], var.environment)
     error_message = "Variable cannot be empty."
   }
 }

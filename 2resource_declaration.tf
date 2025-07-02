@@ -1,3 +1,6 @@
+#example at bottom
+
+
 #This is the core of OpenTofu. You define infrastructure objects as resource blocks.
 
 
@@ -9,34 +12,49 @@
 
 
 resource "<PROVIDER_NAME>_<RESOURCE_TYPE>" "<LOCAL_NAME>" {
-  # Required arguments specific to the resource type
-  # e.g., for an EC2 instance: *ami*, instance_type
+  #<PROVIDER_NAME> = provider alias you configured, or AMI, for a virtual server
+  #eg. aws
 
-  #the ami is around what is called the "operating system image"
-  #which is (Amazon Machine Image) which is a pre configured template
-  #for a virtual server
+  #<RESOURCE_TYPE> = specific type resource you want
+  #eg. aws_instance = "I want to creat a virtual server in AWS"
+  # aws_vpc = "create virutal private network in AWS"
+  # aws_s3_bucket = "create storage bucket in AWS S3"
+  # google_computer_instance = "create virtual server in Google Cloud Compute Engine"
+
+
+  #<LOCAL_NAME> = identifier to this block of configurations so can use elsewhere in code
+  #can make variables around concepts like web servers, production vpc's, app data buckets (S3 bucket)
 
 
 
-  # Optional arguments
-  # e.g., tags, security_groups, key_name
 
-  # Nested blocks (if applicable)
-  # e.g., for a security group, ingress/egress rules
+  # Optional arguments to provide to customize this "resource" block, 
+  #provider will use default values or omit configs
+  #tags = key-val for metadata (for organization), 
+  #security_groups = network rules controlling inbound/outbound traffic
+  #key_name = SSH key pair for access
+
+  # Nested blocks (IF APPLICABLE): for complex configs
+  # e.g., for a security group, ingress/egress rules (for incoming/outgoing traffic)
+  
   # dynamic "NAME" {
-  #   for_each = <COLLECTION>
+  #for nested blocks if have map of configurations with different permissions
+
+  # for_each = <COLLECTION> #iterates over list, set or map
   #   content {
-  #     # arguments for the dynamic block
+  #     # arguments for the dynamic block, eg. aws_security_group can open and loop thru ports for ingress
   #   }
   # }
 
-  # Meta-arguments (optional, apply to all resources)
+
+
+  # Meta-arguments (optional, apply to ALL resources)
   # count = NUMBER                  # Create multiple instances of this resource
-  # for_each = MAP_OR_SET           # Create multiple instances based on a map/set
+  # for_each = MAP_OR_SET           # Create multiple instances based on a map/set, eg for_each = toset(["web", "app", "db"])
   # depends_on = [RESOURCE.NAME]    # Explicitly define dependencies
   # lifecycle {                     # Custom lifecycle rules
-  #   prevent_destroy = true
-  #   ignore_changes  = [tags]
+  #   prevent_destroy = true          #preventing deletion of this resource
+  #   ignore_changes  = [tags]        #ignore certain attributs of a resouce determining if need update
   # }
 }
 
