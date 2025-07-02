@@ -2,10 +2,10 @@
 #Variables allow you to make your configurations reusable and dynamic.
 
 variable "<VARIABLE_NAME>" {
-  #purpose is to decalre input variable to use throughout 
+  #purpose is to declaire input variable to use throughout 
   #allows to have similar infrastructure with different settings
 
-  #<VARIABLE_NAME> = local nmae to var, use it as var.<VARIABLE_NAME>
+  #<VARIABLE_NAME> = local name to var, use it as var.<VARIABLE_NAME>
   #eg. "aws_region": AWS deployment region, "instance_count": number of servers to deploy,
   #"admin_password": pw for an administrative user
 
